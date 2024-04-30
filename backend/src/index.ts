@@ -12,7 +12,9 @@ const app = new Hono<{
 //import routers
 import { userRouter } from "./routes/user";
 import { blogRouter } from "./routes/blog";
-
+app.get("/",async(c)=>{
+  return c.json({message:"Welcome to the blog API"});
+})
 app.route("/api/v1/user",userRouter);
 app.route("/api/v1/blog",blogRouter);
 
