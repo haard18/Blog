@@ -43,7 +43,7 @@ userRouter.post("/signup", async (c) => {
     });
     //create a token
     const token = await sign({ id: user.id }, c.env.JWT_SECRET);
-    return c.json({ token });
+    return c.text(token);
   } catch (error) {
     c.status(400);
   }
@@ -67,7 +67,7 @@ userRouter.post("/signin", async (c) => {
       return c.json({ message: "Incorrect email or password" });
     }
     const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
-    return c.json({ jwt });
+    return  c.text(jwt);
   } catch (error) {
     c.status(400);
     return c.json({ message: "Incorrect email or password" });

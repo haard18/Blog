@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { decode, verify, sign, jwt } from "hono/jwt";
+import { cors } from "hono/cors";
 //put bindings in hono
 const app = new Hono<{
   Bindings: {
@@ -12,6 +13,7 @@ const app = new Hono<{
 //import routers
 import { userRouter } from "./routes/user";
 import { blogRouter } from "./routes/blog";
+app.use("/*",cors());
 app.get("/",async(c)=>{
   return c.json({message:"Welcome to the blog API"});
 })

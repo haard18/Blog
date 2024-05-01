@@ -1,0 +1,1 @@
+export const BACKEND_URL="https://backend.haardsolanki-itm.workers.dev"
