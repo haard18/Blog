@@ -9,7 +9,6 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
     // console.log(blog)
     let normalPublishedAt = "No Date";
     if (blog.publishedAt) {
-
         normalPublishedAt = convertISOToNormalDate(blog.publishedAt);
     }
 

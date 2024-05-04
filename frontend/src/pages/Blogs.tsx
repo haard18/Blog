@@ -2,6 +2,7 @@ import { AppBar } from "../components/AppBar"
 import { BlogCard } from "../components/BlogCard"
 import { BlogSkeleton } from "../components/BlogSkeleton";
 import { useBlogs } from "../hooks"
+import { Blog } from "./Blog";
 interface Blog{
     title:string;
     content:string;
@@ -11,7 +12,7 @@ interface Blog{
 }
 export const Blogs = () => {
     const{loading,blogs}=useBlogs();
-    if(loading){
+    if(loading ||!Blog){
         <BlogSkeleton/>
     }
     
