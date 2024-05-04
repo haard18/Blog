@@ -51,7 +51,7 @@ export function Avatar({ authorName,size="small" }: { authorName: string,size:"b
     // </div>
 
 }
-function Circle() {
+export function Circle() {
     return <div className="h-1 w-1 rounded-full bg-black">
 
     </div>
