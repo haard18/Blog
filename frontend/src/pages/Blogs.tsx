@@ -12,7 +12,7 @@ interface Blog{
 }
 export const Blogs = () => {
     const{loading,blogs}=useBlogs();
-    if(loading ||!Blog){
+    if(loading ||!Blog  ){
         <BlogSkeleton/>
     }
     
