@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { Avatar } from "./BlogCard"
 
-export const AppBar = () => {
+export const AppBar = ({authorName}:{authorName:string}) => {
     return <div className="border-b flex py-5 text-xl justify-between px-4">
         <Link to="/blog">
             <div className="cursor-pointer flex justify-center flex-col font-bold">
@@ -15,7 +15,7 @@ export const AppBar = () => {
             </Link>
             </span>
 
-            <Avatar size={"big"} authorName="Haard Solanki" />
+            <Avatar size={"big"} authorName={authorName}  />
         </div>
     </div>
 }

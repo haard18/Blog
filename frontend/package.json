@@ -12,6 +12,8 @@
   "dependencies": {
     "@hardy18/medium-common-snippets": "^1.0.0",
     "axios": "^1.6.8",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0"

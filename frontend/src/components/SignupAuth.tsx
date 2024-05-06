@@ -9,7 +9,7 @@ export const SignupAuth = ({ type }: { type: "signup" | "signin" }) => {
         name: "",
         email: "",
         password: "",
-    });
+    }); 
 const navigate=useNavigate();
     //function to signup or signin
     async function sendRequest() {

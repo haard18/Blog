@@ -52,3 +52,14 @@ export const useBlog=({id}:{id:string})=>{
         blog
     }
 }
+export const usegetAuthorName = async(token: string) => {
+    return axios.get(`${BACKEND_URL}/api/v1/user/me`, {
+        headers: {
+            Authorization: token
+        }
+    }).then(response => response.data).catch(error => {
+        console.error("Error fetching author details:", error);
+        return null;
+    });
+};
+

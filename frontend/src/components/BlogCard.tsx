@@ -42,8 +42,11 @@ export const BlogCard = ({ title, content, authorName, publishedDate, id }: Blog
         </Link>
     )
 }
-export function Avatar({ authorName, size = "small" }: { authorName: string, size: "big" | "small" }) {
+export function Avatar({ authorName, size = "small" }: { authorName?: string, size: "big" | "small" }) {
 
+    if(!authorName){
+        authorName="Anonymous";
+    }
     let initials = authorName.split(" ");
     return <div className={`p-3 relative inline-flex items-center justify-center ${size === "big" ? "w-10 h-10" : "w-6 h-6"} overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600`}>
         <span className={`font-small ${size === "big" ? "text-lg" : "text-sm"} font-extralight text-white`}>

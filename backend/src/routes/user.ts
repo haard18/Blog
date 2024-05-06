@@ -73,3 +73,26 @@ userRouter.post("/signin", async (c) => {
     return c.json({ message: "Incorrect email or password" });
   }
 });
+userRouter.get("/me",async(c)=>{
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  const token = c.req.header("Authorization");
+  if(!token){
+    c.status(403);
+    return c.json({message:"Unauthorized"});
+  }
+  const {id}=await verify(token,c.env.JWT_SECRET);
+  const user=await prisma.user.findUnique({
+    where:{
+      id:id,
+    }
+  });
+  if(!user){
+    c.status(403);
+    return c.json({message:"Unauthorized"});
+  }
+  return c.json(user);
+
+
+})
