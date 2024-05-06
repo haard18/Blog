@@ -3,6 +3,7 @@ import { AppBar } from "../components/AppBar";
 import { BACKEND_URL } from "../config";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { usegetAuthorName } from "../hooks";
 
 export const Publish = () => {
     const [title, setTitle] = useState("");
@@ -15,6 +16,13 @@ export const Publish = () => {
     const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setContent(e.target.value);
     };
+    const[authorName,setAuthorName]=useState<string>("")
+    const lctoken = localStorage.getItem("jwtToken");
+    if (!lctoken) {
+        return <div>Not Logged in</div>;
+    }
+    const authordetails = usegetAuthorName(lctoken);
+    authordetails.then((res) => setAuthorName(res.name));
 
     const handlePublish = async () => {
         const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
@@ -33,7 +41,7 @@ export const Publish = () => {
 
     return (
         <div>
-            <AppBar />
+            <AppBar authorName={authorName} />
             <div className="flex justify-center w-full">
                 <div className="max-w-screen-lg w-full pt-7">
                     <input

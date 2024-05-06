@@ -1,4 +1,5 @@
-import { Blog } from "../hooks"
+import { useState } from "react";
+import { Blog, usegetAuthorName } from "../hooks"
 import { AppBar } from "./AppBar"
 import { Avatar } from "./BlogCard";
 function convertISOToNormalDate(isoDateString: string): string {
@@ -11,11 +12,17 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
     if (blog.publishedAt) {
         normalPublishedAt = convertISOToNormalDate(blog.publishedAt);
     }
-
+    const[authorName,setAuthorName]=useState<string>("")
+    const lctoken = localStorage.getItem("jwtToken");
+    if (!lctoken) {
+        return <div>Not Logged in</div>;
+    }
+    const authordetails = usegetAuthorName(lctoken);
+    authordetails.then((res) => setAuthorName(res.name));
 
     return (
         <>
-            <AppBar />
+            <AppBar authorName={authorName}/>
             <div className="flex justify-center">
                 <div className="grid grid-cols-12 pt-10 w-screen px-10 max-w-screen-2xl">
                     <div className=" col-span-8 ">
